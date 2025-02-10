@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>...um poema, um café...</title>
+  <!-- Importando a fonte "Special Elite" do Google Fonts para remeter à estética da máquina de escrever -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+  <style>
+    /* Reset de estilos */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Estilos globais */
+    body {
+      font-family: 'Special Elite', 'Courier New', Courier, monospace;
+      background-color: #fdfdf5;
+      color: #333;
+      line-height: 1.6;
+      /* Aumentando o tamanho da fonte para melhorar a leitura */
+      font-size: 18px;
+      /* Fundo com textura sutil de papel */
+      background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='20' height='20' fill='%23fdfdf5'/%3E%3Cpath d='M0 0L20 20M20 0L0 20' stroke='%23eaeaea' stroke-width='0.5'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    /* Cabeçalho */
+    header {
+      background: linear-gradient(135deg, #fafafa, #eaeaea);
+      padding: 30px 20px;
+      border-bottom: 3px solid #333;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+    header h1 {
+      /* Tamanho fixo para não ser afetado pelo aumento da fonte no body */
+      font-size: 45px;
+      letter-spacing: 3px;
+      margin-bottom: 10px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Menu de navegação */
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-size: 1.1em;
+      padding-bottom: 5px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.3s, border-bottom 0.3s;
+    }
+    nav ul li a:hover {
+      color: #555;
+      border-bottom: 2px solid #555;
+    }
+    
+    /* Imagem introdutória */
+    .intro-image {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .intro-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Seções principais */
+    main section {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 40px 30px;
+      margin: 20px 0;
+      border-radius: 8px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    }
+    main section h2 {
+      /* Tamanho fixo para manter os títulos inalterados */
+      font-size: 32px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #333;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+    main section p {
+      text-align: justify;
+      margin-top: 15px;
+    }
+    
+    /* Seção Poemas */
+    .poema-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .poema-item {
+      width: 220px;
+      background-color: #fff;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .poema-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .poema-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+    .poema-item p {
+      margin-top: 10px;
+      font-weight: bold;
+      text-align: center;
+    }
+    
+    /* Seção Sobre o Autor (nova área com imagem do autor) */
+    .sobre-autor-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .autor-imagem {
+      flex: 0 0 auto;
+      width: 150px;
+      height: 150px;
+      overflow: hidden;
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .autor-imagem img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .autor-descricao {
+      flex: 1;
+    }
+    
+    /* Rodapé */
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 20px;
+      background: linear-gradient(135deg, #eaeaea, #fafafa);
+      border-top: 1px solid #ccc;
+      font-size: 0.9em;
+    }
+    
+    /* Responsividade */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 35px;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .poema-item {
+        width: 150px;
+      }
+      .sobre-autor-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .autor-imagem {
+        margin-bottom: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Cabeçalho com título e menu -->
+    <header>
+      <h1>...um poema, um café...</h1>
+      <nav>
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#poemas">Livros</a></li>
+          <li><a href="#sobre-autor">Sobre o Autor</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    <!-- Imagem introdutória -->
+    <div class="intro-image">
+      <img src="https://i.ibb.co/4g7JhctW/poema-e-cafe.webp" alt="Poesia e Café">
+    </div>
+    
+    <!-- Conteúdo principal -->
+    <main>
+      <!-- Seção Início -->
+      <section id="inicio">
+        <h2>Bem-vindo</h2>
+        <p>
+          Seja bem-vindo ao "...um poema, um café...". Aqui você encontrará uma coleção de escritos poéticos em três volumes que embalam pensamentos e emoções, acompanhados de um café para tornar cada leitura ainda mais especial. Aproveite a experiência e deixe-se envolver pela magia das palavras.
+        </p>
+      </section>
+      
+      <!-- Seção Livros -->
+      <section id="poemas">
+        <h2>Livros</h2>
+        <div class="poema-list">
+          <!-- Volume 1 -->
+          <div class="poema-item">
+            <a href="https://ravellsl.github.io/um-poema-um-cafe---vol-1/" target="_blank">
+              <img src="https://i.ibb.co/gMDpTY4b/um-poema-um-caf-volume-1.png" alt="Capa do Livro 1">
+            </a>
+            <p>Volume 1</p>
+          </div>
+          <!-- Volume 2 -->
+          <div class="poema-item">
+            <a href="https://ravellsl.github.io/um-poema-um-cafe---vol-2/" target="_blank">
+              <img src="https://i.ibb.co/R8Mfrss/um-poema-um-caf-volume-2.png" alt="Capa do Livro 2">
+            </a>
+            <p>Volume 2</p>
+          </div>
+          <!-- Volume 3 -->
+          <div class="poema-item">
+            <a href="https://ravellsl.github.io/um-poema-um-cafe---vol-3/" target="_blank">
+              <img src="https://i.ibb.co/mVsqsyh7/um-poema-um-caf-volume-3.png" alt="Capa do Livro 3">
+            </a>
+            <p>Volume 3</p>
+          </div>
+          <!-- Adicione mais volumes conforme necessário -->
+        </div>
+      </section>
+      
+      <!-- Seção Sobre o Autor (com imagem ao lado) -->
+      <section id="sobre-autor">
+        <h2>Sobre o Autor</h2>
+        <div class="sobre-autor-container">
+          <!-- Área da imagem -->
+          <div class="autor-imagem">
+            <!-- Substitua pelo link real da foto do autor -->
+            <img src="https://i.ibb.co/J76zSZ7/1691719867138.jpg" alt="Foto do Autor">
+          </div>
+          <!-- Texto sobre o autor -->
+          <div class="autor-descricao">
+            <p>Ravell Souza Lopes é um escritor que alia sua formação acadêmica em Gestão de Empresas e Secretariado Executivo à paixão pela literatura. Escrevendo por hobbie, dedicou dez anos ao estudo aprofundado da palavra e da escrita criativa, período no qual desenvolveu sua produção literária. Seus livros de escritos poéticos refletem um processo evolutivo de criação textual, onde cada volume é mais denso e refinado que o anterior, revelando sua constante busca pelo aprimoramento da escrita e pela construção de narrativas cada vez mais ricas e envolventes.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    
+    <!-- Rodapé -->
+    <footer>
+      <p>&copy; 2025<br>...um poema, um café...<br>Todos os direitos reservados.</p>
+    </footer>
+  </div>
+
+  <!-- Script para garantir que a página sempre abra no topo -->
+  <script>
+    // Impede que o navegador restaure a posição de scroll
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.addEventListener('load', function() {
+      window.scrollTo(0, 0);
+    });
+  </script>
+</body>
+</html>
