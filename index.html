@@ -36,43 +36,44 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 20px;
-      position: relative; /* para posicionar o ícone do menu quando em mobile */
+      position: relative;
     }
     
     /* Cabeçalho */
     header {
       background: linear-gradient(135deg, #fafafa, #eaeaea);
-      padding: 30px 20px;
+      padding: 20px;
       border-bottom: 3px solid #333;
-      text-align: center;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       margin-bottom: 20px;
       position: relative;
     }
-    header h1 {
+    /* Container que envolve o botão e o título para melhor controle de layout */
+    .header-top {
+      display: flex;
+      align-items: center;
+      gap: 10px; /* Espaço entre o botão e o título */
+    }
+    .header-top h1 {
       font-size: 45px;
       letter-spacing: 3px;
-      margin-bottom: 10px;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      margin: 0 auto; /* Mantém o título centralizado no espaço restante */
     }
     
-    /* Menu de navegação */
-    nav {
-      position: relative;
-    }
-    /* Ícone do menu (hambúrguer) para mobile – só aparece com media query */
+    /* Botão do menu (ícone hambúrguer) */
     .menu-icon {
-      display: none; /* será exibido apenas em telas <= 600px */
       font-size: 30px;
       cursor: pointer;
-      position: absolute;
-      top: 15px;
-      left: 15px;
       background: none;
       border: none;
       color: #333;
     }
 
+    /* Menu de navegação */
+    nav {
+      margin-top: 10px; /* Espaço abaixo do .header-top */
+    }
     nav ul {
       list-style: none;
       display: flex;
@@ -209,25 +210,24 @@
     
     /* Responsividade: ajuste para telas até 600px */
     @media (max-width: 600px) {
-      /* Ajustando tamanho e espaçamentos */
       .container {
         padding: 10px;
       }
+      .header-top {
+        justify-content: flex-start; /* botão à esquerda, h1 depois */
+      }
+      .header-top h1 {
+        font-size: 24px;
+        text-align: left; /* ou center, conforme preferir */
+        letter-spacing: 2px;
+        margin: 0;
+      }
 
-      header h1 {
-        font-size: 28px;
-        margin-bottom: 5px;
-      }
-      /* Ícone do menu aparece e substitui a lista */
-      .menu-icon {
-        display: block;
-      }
-      
-      /* Esconde a lista ao carregar (por padrão) e exibe em posição absoluta quando estiver 'aberta' */
+      /* Menu some por padrão em mobile */
       nav ul {
-        display: none;  /* por padrão, oculto no mobile */
+        display: none;
         position: absolute;
-        top: 65px;
+        top: 120px; /* pode ajustar conforme necessário */
         left: 10px;
         flex-direction: column;
         gap: 15px;
@@ -238,12 +238,12 @@
         padding: 20px;
         width: 75%;
       }
-      /* Quando a classe "open" estiver ativa, exibe o menu */
+      /* exibe o menu quando abrir */
       nav ul.open {
         display: flex;
       }
 
-      /* Ajustando seções para não ficarem muito grandes no mobile */
+      /* Ajuste de espaçamento nas seções */
       main section {
         padding: 20px 15px;
         margin: 15px 0;
@@ -252,33 +252,29 @@
         font-size: 24px;
       }
 
+      /* Livros empilhados (um abaixo do outro) */
       .poema-list {
-        gap: 10px;
+        flex-direction: column;
+        align-items: center; /* centralizar os itens na coluna */
       }
       .poema-item {
-        width: 150px;
-        margin: 0 auto;
-      }
-
-      .sobre-autor-container {
-        flex-direction: column;
-        text-align: center;
-      }
-      .autor-imagem {
-        margin-bottom: 15px;
+        width: 100%;
+        max-width: 300px; /* limite de largura para manter um bom visual */
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Cabeçalho com título e menu -->
+    <!-- Cabeçalho com botão e título -->
     <header>
-      <h1>...um poema, um café...</h1>
-      <nav>
-        <!-- Ícone do menu (hambúrguer) -->
+      <div class="header-top">
+        <!-- Botão do menu antes do título -->
         <button class="menu-icon" onclick="toggleMenu()">☰</button>
-        <!-- Lista de navegação -->
+        <h1>...um poema, um café...</h1>
+      </div>
+      <!-- Nav abaixo -->
+      <nav>
         <ul id="navLinks">
           <li><a href="#inicio">Início</a></li>
           <li><a href="#poemas">Livros</a></li>
@@ -343,13 +339,18 @@
           </div>
           <!-- Texto sobre o autor -->
           <div class="autor-descricao">
-            <p>Ravell Souza Lopes é um autor que alia sua formação acadêmica em Gestão de Empresas e Secretariado Executivo à paixão pela literatura. Escrevendo por hobbie, dedicou dez anos ao estudo aprofundado da palavra e da escrita criativa, período no qual desenvolveu sua produção literária. Seus livros de escritos poéticos refletem um processo evolutivo de criação textual, onde cada volume é mais denso e refinado que o anterior, revelando sua constante busca pelo aprimoramento da escrita e pela construção de narrativas cada vez mais ricas e envolventes.
+            <p>
+              Ravell Souza Lopes é um autor que alia sua formação acadêmica em Gestão de Empresas e Secretariado Executivo à paixão pela literatura. 
+              Escrevendo por hobbie, dedicou dez anos ao estudo aprofundado da palavra e da escrita criativa, período no qual desenvolveu sua produção literária. 
+              Seus livros de escritos poéticos refletem um processo evolutivo de criação textual, onde cada volume é mais denso e refinado que o anterior, 
+              revelando sua constante busca pelo aprimoramento da escrita e pela construção de narrativas cada vez mais ricas e envolventes.
             </p>
           </div>
         </div>
       </section>
     </main>
     
+    <!-- Seção Contato -->
     <section id="contato">
       <h2>Contato</h2>
       <p>
@@ -363,7 +364,7 @@
     </footer>
   </div>
 
-  <!-- Script para garantir que a página sempre abra no topo e controlar o menu -->
+  <!-- Script para garantir que a página sempre abra no topo e para controlar o menu -->
   <script>
     // Impede que o navegador restaure a posição de scroll
     if ('scrollRestoration' in history) {
