@@ -158,15 +158,18 @@
       text-align: center;
     }
 
-    /* Seção Sobre o Autor */
-    #sobre-autor {
-      text-align: center; /* Garante que a imagem fique centralizada */
+    /* Seção Sobre o Autor: layout original para telas grandes */
+    .sobre-autor-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+      margin-top: 20px;
     }
-    /* Container para a imagem do autor (circular e centralizada) */
     .autor-imagem {
+      flex: 0 0 auto;
       width: 150px;
       height: 150px;
-      margin: 0 auto; /* Centraliza horizontalmente */
       overflow: hidden;
       border-radius: 50%;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -176,7 +179,10 @@
       height: 100%;
       object-fit: cover;
     }
-    
+    .autor-descricao {
+      flex: 1;
+    }
+
     /* Seção Contato (centralizada) */
     #contato {
       text-align: center;
@@ -202,7 +208,7 @@
       font-size: 0.9em;
     }
     
-    /* Responsividade: ajuste para telas até 600px */
+    /* Responsividade: APENAS para telas até 600px */
     @media (max-width: 600px) {
       .container {
         padding: 10px;
@@ -217,11 +223,11 @@
         margin: 0;
       }
 
-      /* Esconde menu por padrão em mobile */
+      /* Esconde menu por padrão no mobile */
       nav ul {
         display: none;
         position: absolute;
-        top: 120px; /* ajuste conforme necessário */
+        top: 120px; /* Ajustar conforme necessário */
         left: 10px;
         flex-direction: column;
         gap: 15px;
@@ -232,7 +238,7 @@
         padding: 20px;
         width: 75%;
       }
-      /* exibe o menu quando aberto */
+      /* Exibe o menu quando aberto */
       nav ul.open {
         display: flex;
       }
@@ -245,7 +251,7 @@
         font-size: 24px;
       }
 
-      /* Livros empilhados (um abaixo do outro) */
+      /* Livros empilhados em telas pequenas (um abaixo do outro) */
       .poema-list {
         flex-direction: column;
         align-items: center;
@@ -253,6 +259,19 @@
       .poema-item {
         width: 100%;
         max-width: 300px;
+      }
+
+      /* Sobre o Autor em formato vertical:
+         imagem acima do texto, tudo centralizado */
+      .sobre-autor-container {
+        flex-direction: column;
+        text-align: center; /* centraliza texto e imagens */
+      }
+      .autor-imagem {
+        margin: 0 auto 15px auto; /* centraliza e adiciona espaçamento inferior */
+      }
+      .autor-descricao {
+        width: 100%;
       }
     }
   </style>
@@ -321,24 +340,28 @@
         </div>
       </section>
       
-      <!-- Seção Sobre o Autor -->
+      <!-- Seção Sobre o Autor (layout original em telas grandes) -->
       <section id="sobre-autor">
         <h2>Sobre o Autor</h2>
-        <!-- Foto do autor centralizada -->
-        <div class="autor-imagem">
-          <img src="https://i.ibb.co/J76zSZ7/1691719867138.jpg" alt="Foto do Autor">
+        <div class="sobre-autor-container">
+          <!-- Área da imagem -->
+          <div class="autor-imagem">
+            <img src="https://i.ibb.co/J76zSZ7/1691719867138.jpg" alt="Foto do Autor">
+          </div>
+          <!-- Texto sobre o autor -->
+          <div class="autor-descricao">
+            <p>
+              Ravell Souza Lopes é um autor que alia sua formação acadêmica em Gestão de Empresas e Secretariado Executivo à paixão pela literatura.
+              Escrevendo por hobbie, dedicou dez anos ao estudo aprofundado da palavra e da escrita criativa, período no qual desenvolveu sua produção literária.
+              Seus livros de escritos poéticos refletem um processo evolutivo de criação textual, onde cada volume é mais denso e refinado que o anterior,
+              revelando sua constante busca pelo aprimoramento da escrita e pela construção de narrativas cada vez mais ricas e envolventes.
+            </p>
+          </div>
         </div>
-        
-        <!-- Texto de biografia abaixo da foto -->
-        <p>
-          Ravell Souza Lopes é um autor que alia sua formação acadêmica em Gestão de Empresas e Secretariado Executivo à paixão pela literatura.
-          Escrevendo por hobbie, dedicou dez anos ao estudo aprofundado da palavra e da escrita criativa, período no qual desenvolveu sua produção literária.
-          Seus livros de escritos poéticos refletem um processo evolutivo de criação textual, onde cada volume é mais denso e refinado que o anterior,
-          revelando sua constante busca pelo aprimoramento da escrita e pela construção de narrativas cada vez mais ricas e envolventes.
-        </p>
       </section>
     </main>
     
+    <!-- Seção Contato -->
     <section id="contato">
       <h2>Contato</h2>
       <p>
